@@ -1,0 +1,12 @@
+services:
+  multiplayer:
+    build: .
+    ports:
+      - 8001:8001
+      # - 9229:9229 # debugger port
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: yarn start:docker
+    environment: 
+      PORT: 8001

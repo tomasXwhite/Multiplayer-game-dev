@@ -1,0 +1,43 @@
+{
+  "name": "multiplayer",
+  "version": "0.0.1",
+  "description": "multiplier server for legendaryum metaverse",
+  "main": "server.js",
+  "license": "MIT",
+  "volta": {
+    "node": "16.15.0",
+    "yarn": "1.22.18"
+  },
+  "engines": {
+    "node": ">=16.15.0"
+  },
+  "scripts": {
+    "start": "nodemon --exitcrash --transpile-only src/server.ts"
+  },
+  "dependencies": {
+    "@colyseus/testing": "^0.14.22",
+    "@prisma/client": "^4.1.0",
+    "@types/uuid": "^8.3.4",
+    "colyseus": "^0.14.23",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@colyseus/monitor": "^0.14.0",
+    "@tsconfig/node16": "^1.0.2",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^18.6.1",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "chokidar": "^3.5.3",
+    "eslint": "^8.14.0",
+    "nodemon": "^2.0.18",
+    "prisma": "^4.1.0",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.6.4"
+  }
+}

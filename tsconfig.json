@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "lib": ["ESNext"],
+    "outDir": "dist"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "**/*.test.ts"]
+}
