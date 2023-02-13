@@ -9,6 +9,7 @@ import { Server } from '@colyseus/core'
 import { createServer } from 'http'
 import { LayerRoom } from './rooms/layers_room'
 import { ParentLayersRoom } from './rooms/parent_layers_room'
+import { ChatRoom } from './rooms/base/chat_base'
 
 
 const app = express()
@@ -37,9 +38,9 @@ const gameServer = new Server({
 
 //Comentario generado para conocimiento
 console.log('Transport:')
-console.log(transport)
-console.log('gameServer:')
-console.log(gameServer)
+// console.log(transport)
+// console.log('gameServer:')
+// console.log(gameServer)
 
 // gameServer.define('central_square', RoomTemplate, {
 //   maxPlayerInLayer: 20,
@@ -48,6 +49,13 @@ console.log(gameServer)
 // gameServer.define('classroom', RoomTemplate, {
 //   maxPlayerInLayer: 20,
 // })
+
+
+gameServer.define("chatRoom", ChatRoom, {
+  maxPlayerInLayer: 10
+}).enableRealtimeListing()
+
+
 
 gameServer.define('scene_develop', LayerRoom, {
   maxPlayerInLayer: 20,

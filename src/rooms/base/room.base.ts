@@ -12,6 +12,11 @@ export class BaseRoom<T extends BaseState> extends Room<T> {
       this.state.removePlayer(userId)
       this.broadcast('delete-player', userId)
     })
+    /*HANDLE FOR MESSAGES IN THE ROOM BASE TOO. */
+    this.onMessage("message", (client, message) => {
+      console.log("ChatRoom received message from", client.sessionId, ":", message);
+      this.broadcast("messages", `(${client.sessionId}) ${message}`);
+    });
 
     this.onMessage('updatePosition', (client: Client, message: MultiplayerMessage<PlayerState>) => {
       this.onMove(message.id.toString(), message.message)
@@ -27,8 +32,8 @@ export class BaseRoom<T extends BaseState> extends Room<T> {
     })
     this.onMessage('updateGesture', (client: Client, message: MultiplayerMessage<Gestures>) => {
       this.onGestureUpdated(message.id.toString(), message.message)
-      const player =this.state.getPlayerById(message.id)
-      this.broadcast('gestureUpdated', {id: message.id, username: player?.username, gesture: message.message})
+      const player = this.state.getPlayerById(message.id)
+      this.broadcast('gestureUpdated', { id: message.id, username: player?.username, gesture: message.message })
     })
   }
 
@@ -68,6 +73,7 @@ export class BaseRoom<T extends BaseState> extends Room<T> {
       this.state.removePlayer(user.id)
       this.broadcast('delete-player', userId)
     }
+
   }
 
   onAvatarUpdated(playerId: string, avatar: AvatarType) {
