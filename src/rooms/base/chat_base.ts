@@ -10,7 +10,7 @@ export class ChatRoom<T extends BaseState> extends Room<T> {
     console.log("CHAT CREATED");
     
     
-    this.maxClients= 4
+    this.maxClients= 10
 
     this.onMessage('delete-player', (client: Client) => {
       const userId = client.id
@@ -21,7 +21,7 @@ export class ChatRoom<T extends BaseState> extends Room<T> {
          this.onMessage("messageToServer", (client, message) => {
             // console.log("ChatRoom received message from", client.sessionId, ":", message);
             // this.broadcast("messageToClient", `(${client.sessionId}) ${message}`);
-            console.log(client, message);
+            // console.log(client, message);
             this.broadcast('messages', {message: message}, { except: client })
             
         });
@@ -33,7 +33,7 @@ export class ChatRoom<T extends BaseState> extends Room<T> {
 
 
 
-  onJoin(client: Client, params: { id: string, username: string, avatar: AvatarType, roles: string[] }) {
+  onJoin(client: Client, options: { username: string }) {
     // this.state.createPlayer(
     //   params.id,
     //   params.username,
@@ -41,8 +41,10 @@ export class ChatRoom<T extends BaseState> extends Room<T> {
     //   client.id,
     //   params.roles
     // )
+    
+    this.broadcast('joined', {joinedUser: options.username}, { except: client })
 
-    console.log(`user logged,${client.id}`);
+    console.log(`user logged,${options.username},-`);
     
   }
 
